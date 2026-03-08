@@ -1,4 +1,4 @@
-FROM node:slim
+FROM node:trixie-slim
 
 WORKDIR /trss
 
@@ -9,6 +9,7 @@ RUN apt update && apt install -y --no-install-recommends \
     git \
     ffmpeg \
     ca-certificates \
+    fastfetch \
     && rm -rf /var/lib/apt/lists/* \
     && apt clean
 
