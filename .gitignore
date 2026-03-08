@@ -8,6 +8,6 @@
 !/plugins/other
 /renderers/*/config.yaml
 /resources
-/dump.rdb
+dump.rdb
 /pnpm-lock.yaml
 /*.sh

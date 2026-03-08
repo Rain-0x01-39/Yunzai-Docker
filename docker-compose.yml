@@ -1,5 +1,6 @@
 services:
   trss-bot:
+    image: ghcr.io/rain-0x01-39/yunzai-docker:latest
     container_name: trss-bot
     build: .
     environment:
@@ -21,4 +22,4 @@ services:
     container_name: trss-db
     restart: always
     volumes:
-      - .:/data
+      - ./redis-data:/data
