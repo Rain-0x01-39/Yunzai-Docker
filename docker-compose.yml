@@ -1,0 +1,22 @@
+services:
+  trss-bot:
+    container_name: trss-bot
+    build: .
+    tty: true
+    stdin_open: true
+    ports:
+      - "2536:2536"
+    restart: always
+    volumes:
+      - ./config:/trss/config
+      - ./data:/trss/data
+      - ./plugins:/trss/plugins
+    depends_on:
+      - redis
+  
+  redis:
+    image: valkey/valkey:latest
+    container_name: trss-db
+    restart: always
+    volumes:
+      - .:/data

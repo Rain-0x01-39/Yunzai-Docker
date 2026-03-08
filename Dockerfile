@@ -2,24 +2,22 @@ FROM node:slim
 
 WORKDIR /trss
 
-ENV PNPM_HOME="/pnpm"
-ENV PATH="$PNPM_HOME:$PATH"
-RUN corepack enable
+RUN npm install -g pnpm
 
-RUN apt update && apt install -y \
+RUN apt update && apt install -y --no-install-recommends \
     chromium \
     git \
     ffmpeg \
     ca-certificates \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
     && apt clean
 
-COPY package.json pnpm-lock.yaml ./
+RUN mkdir -p data temp
 
-RUN pnpm install -P
+# RUN pnpm install -P
 
 COPY . .
 
 EXPOSE 2536
 
-CMD ["sh", "-c", "pnpm install -P && node app"]
+CMD ["/bin/sh", "-c", "pnpm install -P --prefer-offline && exec node app"]
