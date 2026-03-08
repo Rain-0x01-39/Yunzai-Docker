@@ -2,6 +2,8 @@ services:
   trss-bot:
     container_name: trss-bot
     build: .
+    environment:
+      CI: "true"
     tty: true
     stdin_open: true
     ports:
